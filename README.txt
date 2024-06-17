@@ -6,4 +6,4 @@ That said, my old portfolio repository was a mess! I am currently working to res
 
 I've enjoyed jumping into new projects and building out yet another "million dollar game idea," but it is also on my portfolio road map to refurbish some of these old projects. Please stop back in from time to time to check out new progress!
 
-Thanks!
+Cheers!
