@@ -236,10 +236,7 @@ public class playerBehavior : NetworkBehaviour
                 gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
             }
         }
-
-
     }
-        
 
     //In Game
 
@@ -269,8 +266,6 @@ public class playerBehavior : NetworkBehaviour
         {
             LandingTimer(currentIsland);
         }
-
-
     }
 
     private void FixedUpdate()
@@ -310,8 +305,6 @@ public class playerBehavior : NetworkBehaviour
             Camera.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -10f);
         }
     }
-
-
 
     //Functions//
 
@@ -376,7 +369,6 @@ public class playerBehavior : NetworkBehaviour
         }
     }
 
-
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Nevin" || collision.tag == "Westmount")
@@ -399,22 +391,20 @@ public class playerBehavior : NetworkBehaviour
 
     public void ShowSprite()
     {
-        
+        if (spriteNum == 1)
+        {
+            playerRenderer.sprite = playerSprite;
+        }
 
-            if (spriteNum == 1)
-            {
-                playerRenderer.sprite = playerSprite;
-            }
+        if (spriteNum == 2)
+        {
+            playerRenderer.sprite = airplaneSprite;
+        }
 
-            if (spriteNum == 2)
-            {
-                playerRenderer.sprite = airplaneSprite;
-            }
-
-            if (spriteNum == 3)
-            {
-                playerRenderer.sprite = null;
-            }
+        if (spriteNum == 3)
+        {
+            playerRenderer.sprite = null;
+        }
     }
 
     [Command]
@@ -448,27 +438,26 @@ public class playerBehavior : NetworkBehaviour
 
     public void LandingTimer(string airport)
     {
-            if (startLandingTimer == false)
-            {
-                curDelayTimer = 10;
-                startLandingTimer = true;
-            }
-            interactText.SetActive(true);
-            curDelayTimer -= Time.deltaTime;
+        if (startLandingTimer == false)
+        {
+            curDelayTimer = 10;
+            startLandingTimer = true;
+        }
+        interactText.SetActive(true);
+        curDelayTimer -= Time.deltaTime;
 
-            if (curDelayTimer <= 0)
+        if (curDelayTimer <= 0)
+        {
+            interactText.GetComponent<Text>().text = "Press 'F' to land";
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                interactText.GetComponent<Text>().text = "Press 'F' to land";
-                if (Input.GetKeyDown(KeyCode.F))
-                {
-                    LandAirplane();
-                }
+                LandAirplane();
             }
-            else
-            {
-                interactText.GetComponent<Text>().text = "You have entered the airspace of " + airport + ". You are clear to land in " + Mathf.CeilToInt(curDelayTimer).ToString() + " seconds";
-            }
-        
+        }
+        else
+        {
+            interactText.GetComponent<Text>().text = "You have entered the airspace of " + airport + ". You are clear to land in " + Mathf.CeilToInt(curDelayTimer).ToString() + " seconds";
+        }     
     }
 
     public void TakeOff()
@@ -553,9 +542,7 @@ public class playerBehavior : NetworkBehaviour
     public void TakeOffForServer(bool x)
     {
         Physics2D.IgnoreLayerCollision(9, 8, x);
-
     }
-
     
     public void ShootBullet()
     {
@@ -670,7 +657,6 @@ public class playerBehavior : NetworkBehaviour
             cliffordCheckBox.GetComponent<Image>().sprite = checkedBoxSprite;
             hasOrder = true;
             DisableOrderButtons();
-
         }
     }
 
